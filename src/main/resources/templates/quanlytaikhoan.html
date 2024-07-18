@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+         label {
+            color: #0f6eeb;
+            font-weight: 500;
+            font-size: 23px;
+        }
+
+        body {
+            background: url(https://images.pexels.com/photos/38537/woodland-road-falling-leaf-natural-38537.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1) no-repeat center /cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            
+        }
+
+        input {
+            margin-top: 5px;
+            padding: 8px 10px;
+            outline: #ccc;
+        }
+        .main {
+            width: 900px;
+            margin: 50px auto;
+            display: flex;
+            justify-content: space-between;
+            background-color: #f2f2f2;
+            border-radius: 2px;
+        }
+
+        /* add */
+
+        /* show */
+        .show {
+            width: 100%;
+            border: 1px solid #ccc;
+            padding: 0px 20px;
+        }
+
+        .show-name {
+            color: #000;
+            text-align: center;
+            padding: 20px 0px;
+            font-size: 25px;
+            font-weight: 600;
+            font-size: 30px;
+        }
+
+        label {
+            color: #2f7de4;
+        }
+
+        .show__form-group {
+            float: right;
+            margin-bottom: 30px;
+            margin-right: 20px;
+        }
+
+        table {
+            width: 100%;
+            text-align: center;
+            margin: 30px auto 0px;
+        }
+
+        th {
+            color: #000;
+            font-size: 23px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            width: 100px;
+        }
+
+        td {
+            max-width: 100px;
+            word-wrap: break-word;
+            border-bottom: 1px solid #ccc;
+            border-collapse: collapse;
+            padding : 20px 0px;
+        }
+
+        .pages {
+            display: flex;
+            justify-content: center;
+            margin: 100px auto 0px;
+        }
+
+        .hand {
+            color: red;
+            cursor: pointer;
+        }
+
+        .div {
+            color: red;
+        }
+
+
+        .pre, .page, .next {
+            border: 1px solid #ccc;
+            padding: 5px 8px;
+            cursor: pointer;
+        }
+        .page-active {
+            background-color: #2f7de4;
+            color: #fff;
+        }
+
+        .prin {
+            font-weight: bold;
+            border: 2px solid #ccc;
+            padding: 5px 10px;
+            display: inline-block;
+            margin-left: 50px;
+            margin-bottom: 50px;
+            cursor: pointer;
+            color: #0f6eeb;
+            border:1px solid #2f7de4;
+            transition: 0.1s;
+        
+        }
+
+        .prin:hover {
+            background-color: #0f6eeb;
+            color: #fff;
+        }
+
+        .ib>* {
+            display: inline-block;
+        }
+        .cc{
+			color:#000;
+		}
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <!-- Show -->
+        <div class="show">
+            <p class="show-name">Danh sách</p>
+            <div class="show__form-group">
+                <label for="search" class="cc">Tìm kiếm</label>
+                <input type="text" name="" id="search">
+            </div>
+
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên</th>
+                    <th>Mật khẩu</th>
+                    <th>Thao tác</th>
+                </tr>
+                 <tr th:each="item : ${users}">
+                    <td th:text="${item.id}"></td>
+                    <td th:text="${item.username}"></td>
+                    <td th:text="${item.password}"></td>
+                  
+                    <td class="ib">
+                        <a th:href="@{'/admin/editAccount/' +${item.id}}" class="hand">Edit</a>
+                        <div class="div">|</div>
+                        <a th:href="@{'/admin/deleteAccount/' + ${item.id}}" th:onclick = "return confirm('Bạn có chắc muốn xóa ?')" class="hand">Delete</a>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="pages">
+                <p class="pre">Trước</p>
+                <p class="page page-active">1</p>
+                <p class="page">2</p>
+                <p class="page">3</p>
+                <p class="next">Tiếp</p>
+            </div>
+
+            <div class="prin">In danh sách</div>
+        </div>
+
+    </div>
+</body>
+
+</html>

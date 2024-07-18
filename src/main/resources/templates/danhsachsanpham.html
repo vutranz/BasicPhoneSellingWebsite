@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: url(https://images.pexels.com/photos/38537/woodland-road-falling-leaf-natural-38537.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1) no-repeat center /cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            
+        }
+
+        .main {
+            width: 1200px;
+            margin: 50px auto;
+            display: flex;
+            justify-content: space-between;
+            background-color: #f2f2f2;
+            border-radius: 2px;
+        }
+
+        /* add */
+
+        label {
+            color: #000;
+            font-weight: 500;
+            font-size: 23px;
+        }
+
+        input {
+            margin-top: 5px;
+            padding: 8px 10px;
+            outline: #ccc;
+        }
+
+
+        /* show */
+        .show {
+            width: 100%;
+            border: 1px solid #ccc;
+            padding: 0px 50px;
+        }
+
+        .show-name {
+            color:black;
+            text-align: center;
+            padding: 20px 0px;
+            font-size: 25px;
+            font-weight: 600;
+            font-size: 30px;
+        }
+
+        .show__form-group {
+            float: right;
+            margin-bottom: 30px;
+            margin-right: 20px;
+        }
+
+        table {
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+            
+        }
+
+        tr {
+            
+        }
+
+        th {
+            color: #000;
+            font-size: 23px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            width: 100px;
+        }
+
+        td {
+            width: 100px;
+            word-wrap: break-word;
+            border-bottom: 1px solid #ccc;
+            border-collapse: collapse;
+            padding : 20px 0px;
+        }
+
+        img {
+            width: 100px;
+        }
+
+        .hand {
+            color: #1471eb;
+            cursor:pointer;
+            font-weight: bold;
+        }
+
+        .div {
+            color:rgb(240, 18, 18);
+        }
+
+        .pages {
+            display: flex;
+            justify-content: center;
+            margin: 100px auto 0px;
+        }
+
+        .pre, .page, .next {
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .page-active{
+            background-color: #2f7de4;
+            color: #fff;
+        }
+
+        .prin {
+            font-weight: bold;
+            border: 2px solid #ccc;
+            padding: 5px 10px;
+            display: inline-block;
+            margin-left: 50px;
+            cursor: pointer;
+            color: #0f6eeb;
+            border:1px solid #2f7de4;
+            transition: 0.1s;
+        }
+
+        .prin:hover {
+            background-color: #0f6eeb;
+            color: #fff;
+        }
+
+        .ib > * {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <!-- Add -->
+
+        <!-- Show -->
+        <div class="show">
+            <p class="show-name">Danh sách sản phẩm</p>
+             <p style="color:red;" class="text-danger ml-3 mt-1" th:text="${Message}"></p>
+            <div class="show__form-group">
+                <label for="search">Tìm kiếm</label>
+                <input type="text" name="" id="search">
+            </div>
+
+            <table>
+                <tr>
+                    
+                    <th>Tên</th>
+                    <th>Ảnh</th>
+                    <th>Giá</th>
+                    <th>Mô tả</th>
+                    <th>Thao tác</th>
+                </tr>
+        
+
+                <tr th:each="item : ${products}">
+                    
+                    <td th:text="${item.name}">
+                        
+                    </td>
+                    <td >
+                        <img th:src="${item.image}" alt="">
+                    </td>
+                    <td th:text="${item.price}"></td>
+                    <td th:text="${item.descrip}"></td>
+                    
+                    <td class="ib">
+                        <a th:href="@{'/user/buyProduct/' +${item.id}}" class="hand fa-solid fa-cart-shopping"></a>
+                    </td>
+                </tr>
+                
+                
+                
+                
+            </table>
+
+            <div class="pages">
+                <p class="pre">Trước</p>
+                <p class="page page-active">1</p>
+                <p class="page">2</p>
+                <p class="page">3</p>
+                <p class="next">Tiếp</p>
+            </div>
+
+            <div class="prin">In danh sách</div>
+        </div>
+
+    </div>
+</body>
+
+</html>
